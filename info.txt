@@ -11,12 +11,12 @@ Document of MongoDB:there are 2 types of databases:
     query for getting all the list of databases in mongoDB: show dbs 
     
     There are 2 functions/queries to insert data into collection.     
-      insertOne(); -> for entering single record     
-      insertMany(); -> for entering multiple record 
+      insertOne({}); -> for entering single record     
+      insertMany([]); -> for entering multiple record 
       
       there are 2 functions to fetch the data from collection      
-      findOne();     
-      find(); 
+      findOne();  single   
+      find(); multiple records
       
       there are functions to update the data:      
       updateOne()
@@ -36,4 +36,6 @@ Document of MongoDB:there are 2 types of databases:
       $lte (less than equal to)
       $gte (greater than equal to)
       $in (this is include. it checks the conditions of any field)
+      $nin (for not including multiple values of single field)
+      $ne (not equals to) $exists (checks if the data exists into document or not)    
       
