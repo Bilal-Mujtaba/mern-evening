@@ -46,4 +46,24 @@ const getAllStudent = async (req,res) => {
     }
 }
 
+//API for getting any specific student
+const getStudentbyId = async (req,res) => {
+    try{
+        const student = await Student.findById(req.params.id);
+        //if student record not found
+        if(!student){
+            return res.status(404).json({
+                success: false,
+                message: 'Record not found!'
+            })
+        }
+        res.status(200).json({
+            success: true,
+            data: student
+        })
+    }catch(error){
+
+    }
+}
+
 module.exports = {addStudent, getAllStudent};
