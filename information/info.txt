@@ -64,3 +64,9 @@ Document of MongoDB:there are 2 types of databases:
        update (PUT, PATCH)
        Delete (DELETE)
       
+      status:
+      200, 201 (success)
+      400 (error)
+      500 (server error)
+      404 (not found)
+      1100 (mongoDB status)

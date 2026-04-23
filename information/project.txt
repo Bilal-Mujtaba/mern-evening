@@ -1,0 +1,7 @@
+Project documentation:
+ - company name
+ - members names and roles
+ - project name 
+ - project overview
+ - problem statement
+ - project modules
