@@ -59,11 +59,24 @@ const getStudentbyId = async (req,res) => {
         }
         res.status(200).json({
             success: true,
+            message:'Successfully fetched!',
             data: student
         })
     }catch(error){
+        if(error.name === 'CastError'){
+            return res.status(400).json({
+                success:false,
+                message:'Invalid ID format'
+            })
+        }
+         res.status(500).json({
+            success:false,
+            message:'Something went wrong!',
+            //getting error dynamically
+            error: error.message
+        })
 
     }
 }
 
-module.exports = {addStudent, getAllStudent};
+module.exports = {addStudent, getAllStudent, getStudentbyId};

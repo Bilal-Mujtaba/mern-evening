@@ -1,5 +1,5 @@
 const express = require('express');
-const {addStudent, getAllStudent} = require('../controllers/studentcontroller')
+const {addStudent, getAllStudent, getStudentbyId} = require('../controllers/studentcontroller')
 
 //initiating the router
 const router = express.Router();
@@ -8,6 +8,8 @@ const router = express.Router();
 router.post('/addstudent',addStudent)
 //route of getting all the students
 router.get('/allstudents',getAllStudent)
+//route of getting specific student
+router.get('/getstudent/:id',getStudentbyId);
 
 
 module.exports = router;
