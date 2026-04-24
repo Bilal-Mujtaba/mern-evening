@@ -79,4 +79,35 @@ const getStudentbyId = async (req,res) => {
     }
 }
 
-module.exports = {addStudent, getAllStudent, getStudentbyId};
+//API for updating the student data
+const updateStudent = async(req,res) => {
+    try{
+         const {name,email,course,marks,city} = req.body;
+
+         const updateData = {};
+         updateData.name = name;
+         updateData.email = email;
+         updateData.course = course;
+         updateData.marks = marks;
+         updateData.city = city;
+
+         const student = await Student.findByIdAndUpdate(
+            req.params.id,
+            updateData
+        )
+        if(!student){
+            return res.status(404).json({
+                success:false,
+                message:'Student not found!'
+            })
+        }
+        res.status(200).json({
+            success:true,
+            message:'Student record updated successfully!'
+        })
+    }catch(error){
+
+    }
+}
+
+module.exports = {addStudent, getAllStudent, getStudentbyId, updateStudent};
