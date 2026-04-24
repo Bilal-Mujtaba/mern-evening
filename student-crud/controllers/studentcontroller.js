@@ -1,4 +1,5 @@
 //import the student model
+const student = require('../models/student');
 const Student = require('../models/student');
 
 //function/API to add student into database
@@ -110,4 +111,37 @@ const updateStudent = async(req,res) => {
     }
 }
 
-module.exports = {addStudent, getAllStudent, getStudentbyId, updateStudent};
+//API to delete the student record
+const deleteStudent = async(req,res) => {
+    try{
+
+        const student = await Student.findById(req.params.id);
+
+        await Student.findByIdAndDelete(req.params.id);
+
+        //for getting student name specifically
+        const studentName = student.name;
+
+        res.status(200).json({
+            success:true,
+            message:`Student ${studentName} deleted successfully!`,
+            deletedId: req.params.id
+        })
+    }catch(error){
+          if(error.name === 'CastError'){
+            return res.status(400).json({
+                success:false,
+                message:'Invalid ID format'
+            })
+        }
+         res.status(500).json({
+            success:false,
+            message:'Something went wrong!',
+            //getting error dynamically
+            error: error.message
+        })
+    }
+}
+
+
+module.exports = {addStudent, getAllStudent, getStudentbyId, updateStudent, deleteStudent};
