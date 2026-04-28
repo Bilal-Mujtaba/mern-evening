@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllStudents } from "../api/studentapi";
+import StudentCard from "../components/StudentCard";
+import { Col, Row } from "react-bootstrap";
 
 const Homepage = () => {
     //hook to get all students data
@@ -31,11 +33,16 @@ const Homepage = () => {
     return(
 <div>
     <h1>All Student Data</h1>
+    <Row xs={1} md={2} lg={3}>
     {
+       
         students.map(s => (
-            <p>{s.name}</p>
-        ))
-    }
+            <Col>
+            <StudentCard student={s}/>
+            </Col>
+        ))}
+        </Row>
+   
 </div>
     )
 }
