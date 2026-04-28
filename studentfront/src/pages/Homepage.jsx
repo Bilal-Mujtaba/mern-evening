@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllStudents } from "../api/studentapi";
 
 const Homepage = () => {
     //hook to get all students data
@@ -8,10 +9,33 @@ const Homepage = () => {
     //state for handling the errors
     const [error, setError] = useState(null);
 
+    //function to fetch all students data from database
+    const fetchStudents = async () => {
+        try{
+            setLoading(true);
+            setError(null);
+            const data = await getAllStudents();
+            setStudents(data.data)
+        }catch(error){
+            setError(error);
+        }finally{
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        fetchStudents();
+    },[])
+
     //state for getting the students data automatically
     return(
 <div>
-    <h1>Homepage</h1>
+    <h1>All Student Data</h1>
+    {
+        students.map(s => (
+            <p>{s.name}</p>
+        ))
+    }
 </div>
     )
 }
